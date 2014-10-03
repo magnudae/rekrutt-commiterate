@@ -1,4 +1,4 @@
-Local commIterate
+![alt tag](https://raw.githubusercontent.com/magnudae/rekrutt-commiterate/master/public/images/commiterate_logo.png)
 ===================
 
 Small application for showing off your local lolcommits.
