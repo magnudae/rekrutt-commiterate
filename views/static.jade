@@ -1,0 +1,5 @@
+extends layout
+block content
+    div
+        each item in src
+            img(src='/images/gifs/#{item.filename}' class="gifs")

@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    div
+        each item in src
+            img(src='/images/gifs/#{item.filename}' class="gifs")
+
+    script(type='text/javascript').
+        setTimeout(function(){
+           window.location.reload(1);
+        }, 5000);
+

@@ -1,0 +1,23 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+pre {
+
+}
+.gifs {
+    padding: 5px;
+    width: 25%;
+    box-sizing: border-box;
+}
+
+.logo {
+    height: 100px;
+    margin-left: 50px;
+    margin-bottom: 20px;
+}
