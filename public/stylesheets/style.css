@@ -7,8 +7,15 @@ a {
   color: #00B7FF;
 }
 
-pre {
-
+.stamp {
+    opacity: 0.75;
+    margin-bottom: 50px;
+    margin-top: -40px;
+    margin-left: -40px;
+    height: 100px;
+    -ms-transform: rotate(-20deg); /* IE 9 */
+    -webkit-transform: rotate(-20deg); /* Chrome, Safari, Opera */
+    transform: rotate(-20deg);
 }
 .gifs {
     padding: 5px;
