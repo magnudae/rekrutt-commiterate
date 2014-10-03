@@ -6,7 +6,11 @@ router.get('/', function(req, res) {
     var dir = '/Users/primstav/Projects/iterate/rekrutt-commiterate/public/images/gifs/';
     var list = fs.readdirSync(dir);
     var newList = list.map(function(file){
-        return {'filename': file, 'ctime': fs.statSync(dir + file).ctime};
+        return {'filename': file, 'ctime': fs.statSync(dir + file).ctime, size: fs.statSync(dir + file).size};
+    }).filter(function(file){
+        var now = new Date().getTime();
+        var fileDate = new Date(file.ctime).getTime();
+        return (file.size > 1000000) || (now - fileDate > 8000);
     });
 
     var sortedList = newList.sort(function(a, b){
@@ -14,9 +18,11 @@ router.get('/', function(req, res) {
         var bDate = new Date(b.ctime);
         return bDate - aDate;
     });
+
     if(sortedList.length > 8){
         sortedList = sortedList.slice(0, 8);
     }
+
     res.render('index', {title: 'GIF', src: sortedList});
 });
 
