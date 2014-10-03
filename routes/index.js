@@ -69,26 +69,4 @@ router.get('/commemorate', function(req, res) {
     res.render('commemorate', {title: 'GIF', src: sortedList});
 });
 
-router.get('/dual', function(req, res) {
-    var dir = '/Users/primstav/Projects/iterate/rekrutt-commiterate/public/images/gifs/';
-    var list = fs.readdirSync(dir);
-    var newList = list.map(function(file){
-        return {'filename': file, 'ctime': fs.statSync(dir + file).ctime};
-    });
-
-    var sortedList = newList.sort(function(a, b){
-        var aDate = new Date(a.ctime);
-        var bDate = new Date(b.ctime);
-        return bDate - aDate;
-    });
-    if(sortedList.length > 4){
-        sortedList = sortedList.slice(0, 4);
-    }
-    var randomList = shuffle(sortedList.slice(4));
-    if(randomList.length > 4){
-        randomList = randomList.slice(0, 4);
-    }
-    res.render('static', {title: 'GIF', top: sortedList, random: randomList});
-});
-
 module.exports = router;
