@@ -32,6 +32,7 @@ router.get('/static', function(req, res) {
         var bDate = new Date(b.ctime);
         return bDate - aDate;
     });
+
     res.render('static', {title: 'GIF', src: sortedList});
 });
 function shuffle(o){ //v1.0
@@ -42,12 +43,30 @@ function shuffle(o){ //v1.0
 router.get('/random', function(req, res) {
     var dir = '/Users/primstav/Projects/iterate/rekrutt-commiterate/public/images/gifs/';
     var list = fs.readdirSync(dir);
-    list = shuffle(list);
-
-    if(list.length > 8){
-        list = list.slice(0, 8);
+    var newList = list.map(function(file){
+        return {'filename': file, 'ctime': fs.statSync(dir + file).ctime};
+    });
+    newList = shuffle(newList);
+    if(newList.length > 8){
+        newList = newList.slice(0, 8);
     }
-    res.render('static', {title: 'GIF', src: list});
+    res.render('static', {title: 'GIF', src: newList});
+});
+
+router.get('/commemorate', function(req, res) {
+    var dir = '/Users/primstav/Projects/iterate/rekrutt-commiterate/public/images/commemorate/';
+    var list = fs.readdirSync(dir);
+    var newList = list.map(function(file){
+        return {'filename': file, 'ctime': fs.statSync(dir + file).ctime};
+    });
+
+    var sortedList = newList.sort(function(a, b){
+        var aDate = new Date(a.ctime);
+        var bDate = new Date(b.ctime);
+        return bDate - aDate;
+    });
+
+    res.render('commemorate', {title: 'GIF', src: sortedList});
 });
 
 router.get('/dual', function(req, res) {
