@@ -3,7 +3,7 @@ var router = express.Router();
 var fs = require('fs');
 /* GET home page. */
 router.get('/', function(req, res) {
-    var dir = '/Users/primstav/Projects/iterate/rekrutt-lolcommit/public/images/gifs/';
+    var dir = '/Users/primstav/Projects/iterate/rekrutt-commiterate/public/images/gifs/';
     var list = fs.readdirSync(dir);
     var newList = list.map(function(file){
         return {'filename': file, 'ctime': fs.statSync(dir + file).ctime};
@@ -21,7 +21,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/static', function(req, res) {
-    var dir = '/Users/primstav/Projects/iterate/rekrutt-lolcommit/public/images/gifs/';
+    var dir = '/Users/primstav/Projects/iterate/rekrutt-commiterate/public/images/gifs/';
     var list = fs.readdirSync(dir);
     var newList = list.map(function(file){
         return {'filename': file, 'ctime': fs.statSync(dir + file).ctime};
@@ -40,7 +40,7 @@ function shuffle(o){ //v1.0
 };
 
 router.get('/random', function(req, res) {
-    var dir = '/Users/primstav/Projects/iterate/rekrutt-lolcommit/public/images/gifs/';
+    var dir = '/Users/primstav/Projects/iterate/rekrutt-commiterate/public/images/gifs/';
     var list = fs.readdirSync(dir);
     list = shuffle(list);
 
@@ -51,7 +51,7 @@ router.get('/random', function(req, res) {
 });
 
 router.get('/dual', function(req, res) {
-    var dir = '/Users/primstav/Projects/iterate/rekrutt-lolcommit/public/images/gifs/';
+    var dir = '/Users/primstav/Projects/iterate/rekrutt-commiterate/public/images/gifs/';
     var list = fs.readdirSync(dir);
     var newList = list.map(function(file){
         return {'filename': file, 'ctime': fs.statSync(dir + file).ctime};
