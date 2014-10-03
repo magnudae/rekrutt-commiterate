@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
+var config = require('../config/config');
 var fs = require('fs');
+
 /* GET home page. */
 router.get('/', function(req, res) {
-    var dir = '/Users/primstav/Projects/iterate/rekrutt-commiterate/public/images/gifs/';
+    var dir = config.homeDirectory + '/public/images/gifs/';
     var list = fs.readdirSync(dir);
     var newList = list.map(function(file){
         return {'filename': file, 'ctime': fs.statSync(dir + file).ctime, size: fs.statSync(dir + file).size};
@@ -29,7 +31,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/static', function(req, res) {
-    var dir = '/Users/primstav/Projects/iterate/rekrutt-commiterate/public/images/gifs/';
+    var dir = config.homeDirectory + '/public/images/gifs/';
     var list = fs.readdirSync(dir);
     var newList = list.map(function(file){
         return {'filename': file, 'ctime': fs.statSync(dir + file).ctime};
@@ -51,7 +53,7 @@ function shuffle(o){ //v1.0
 };
 
 router.get('/random', function(req, res) {
-    var dir = '/Users/primstav/Projects/iterate/rekrutt-commiterate/public/images/gifs/';
+    var dir = config.homeDirectory + '/public/images/gifs/';
     var list = fs.readdirSync(dir);
     var newList = list.map(function(file){
         return {'filename': file, 'ctime': fs.statSync(dir + file).ctime};
@@ -66,7 +68,7 @@ router.get('/random', function(req, res) {
 });
 
 router.get('/commemorate', function(req, res) {
-    var dir = '/Users/primstav/Projects/iterate/rekrutt-commiterate/public/images/commemorate/';
+    var dir = config.homeDirectory + '/public/images/commemorate/';
     var list = fs.readdirSync(dir);
     var newList = list.map(function(file){
         return {'filename': file, 'ctime': fs.statSync(dir + file).ctime};
