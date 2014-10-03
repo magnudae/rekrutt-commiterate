@@ -11,6 +11,8 @@ router.get('/', function(req, res) {
         var now = new Date().getTime();
         var fileDate = new Date(file.ctime).getTime();
         return (file.size > 1000000) || (now - fileDate > 8000);
+    }).filter(function(file){
+        return file.filename !== '.DS_Store';
     });
 
     var sortedList = newList.sort(function(a, b){
@@ -37,7 +39,9 @@ router.get('/static', function(req, res) {
         var aDate = new Date(a.ctime);
         var bDate = new Date(b.ctime);
         return bDate - aDate;
-    });
+    }).filter(function(file){
+        return file.filename !== '.DS_Store';
+    });;
 
     res.render('static', {title: 'GIF', src: sortedList});
 });
@@ -51,7 +55,9 @@ router.get('/random', function(req, res) {
     var list = fs.readdirSync(dir);
     var newList = list.map(function(file){
         return {'filename': file, 'ctime': fs.statSync(dir + file).ctime};
-    });
+    }).filter(function(file){
+        return file.filename !== '.DS_Store';
+    });;
     newList = shuffle(newList);
     if(newList.length > 8){
         newList = newList.slice(0, 8);
@@ -70,7 +76,9 @@ router.get('/commemorate', function(req, res) {
         var aDate = new Date(a.ctime);
         var bDate = new Date(b.ctime);
         return bDate - aDate;
-    });
+    }).filter(function(file){
+        return file.filename !== '.DS_Store';
+    });;
 
     res.render('commemorate', {title: 'GIF', src: sortedList});
 });
